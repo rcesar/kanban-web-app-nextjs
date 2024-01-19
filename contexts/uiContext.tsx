@@ -67,7 +67,7 @@ export const UiContextProvider = ({ children }: any) => {
     },
 
     toggleSidebar: () => {
-      setSidebarIsOpenCore(sidebarIsOpen)
+      setSidebarIsOpenCore(!sidebarIsOpen)
     },
     activeBoard,
     openedModal,

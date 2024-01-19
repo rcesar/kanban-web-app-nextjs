@@ -17,7 +17,7 @@ const Tasks: React.FC<{
   }
 
   return (
-    <div className='flex-1 h-full  p-6 flex gap-6 overflow-auto flex-nowrap bg-white2 dark:bg-black3 border-t border-t-gray1 dark:border-t-black1'>
+    <div className='flex-1 h-full p-6 flex justify-evenly gap-6 overflow-auto flex-nowrap bg-white2 dark:bg-black3 '>
       <DragDropContext onDragEnd={onDragEnd}>
         {board?.columns?.map(
           (col: { name: string; tasks: Task[] }, index: number) => (
@@ -33,7 +33,7 @@ const Tasks: React.FC<{
         )}
       </DragDropContext>
 
-      {board?.columns?.length > 0 && (
+      {/* {board?.columns?.length > 0 && (
         <div className='bg-gray1 dark:bg-black2 text-center mt-10 flex rounded-md'>
           <h1
             onClick={() => setActiveModal(ModalEnum.EDIT_BOARD)}
@@ -42,7 +42,7 @@ const Tasks: React.FC<{
             + New Column
           </h1>
         </div>
-      )}
+      )} */}
       {board?.columns?.length === 0 && (
         <div className='text-center relative my-auto w-full'>
           <h2 className='text-2xl text-gray3 mb-8 font-bold'>

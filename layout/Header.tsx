@@ -9,6 +9,7 @@ import ModalEnum from '@/model/ModalEnum'
 import { useQuery } from '@tanstack/react-query'
 import Board from '@/model/Board'
 import useUiContext from '@/hooks/useUiContext'
+import ToggleTheme from '@/components/ToggleTheme'
 const Header = () => {
   const { activeBoard, setActiveModal } = useUiContext()
   const { data } = useQuery<{ boards: Board[] }>({ queryKey: ['boards'] })
@@ -18,13 +19,13 @@ const Header = () => {
   return (
     <div className='flex  items-center justify-between  '>
       {/* Desktop Header */}
-      <div className='sm:flex  items-center justify-between  w-full hidden'>
-        <div className='px-8 py-8  border-r border-r-gray1 dark:border-r-black1 w-[260px] md:w-[300px] '>
+      <div className='sm:flex  items-center justify-between border-b border-b-gray1 dark:border-b-black1  w-full hidden'>
+        <div className='px-8 py-8 w-[260px] md:w-[300px] '>
           <LogoDarkIcon className='dark:hidden' />
           <LogoLightIcon className='dark:block hidden' />
         </div>
-        <div className='px-7  flex flex-1 items-center justify-between  '>
-          <h1 className='text-2xl md:text-3xl'>Platform Launch</h1>
+        <div className='px-7  flex flex-1 items-center justify-end  '>
+          {/* <h1 className='text-2xl md:text-3xl'>Platform Launch</h1> */}
           <div className='flex items-center gap-6'>
             <Button
               label='+ Add New Task'
@@ -32,6 +33,7 @@ const Header = () => {
               disabled={isDisables}
               onClick={() => setActiveModal(ModalEnum.CREATE_TASK)}
             />
+            <ToggleTheme />
             <Dropdown
               disable={data?.boards.length === 0}
               items={[

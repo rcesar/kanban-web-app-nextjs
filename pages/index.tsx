@@ -213,11 +213,9 @@ const Home: React.FC<HomeProps> = ({ prefetchedData = { boards: [] } }) => {
         <div className='flex flex-col overflow-hidden w-full'>
           <Header />
           <div
-            className={`app-container ${
-              sidebarIsOpen ? 'app-container--visible' : 'app-container--hidden'
-            }`}
+            className={`app-container app-container--visible`}
           >
-            <Sidebar />
+            {/* <Sidebar /> */}
             <Tasks onDragEnd={handleDragEnd} />
           </div>
           {/* liading spinner */}
