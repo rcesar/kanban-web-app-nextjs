@@ -1,5 +1,6 @@
 import Button from '../components/UI/Button'
 import LogoDarkIcon from '@/icons/logo-dark.svg'
+import BoardIcon from '@/icons/icon-board.svg'
 import LogoLightIcon from '@/icons/logo-light.svg'
 import LogoMobileIcon from '@/icons/logo-mobile.svg'
 import ChevronDownIcon from '@/icons/icon-chevron-down.svg'
@@ -27,12 +28,22 @@ const Header = () => {
         <div className='px-7  flex flex-1 items-center justify-end  '>
           {/* <h1 className='text-2xl md:text-3xl'>Platform Launch</h1> */}
           <div className='flex items-center gap-6'>
+            <span
+              className=' flex gap-x-4 items-center justify-center text-zinc-800 dark:text-zinc-200 cursor-pointer'
+              onClick={() => setActiveModal(ModalEnum.CREATE_BOARD)}
+            >
+              <span>
+                <BoardIcon />
+              </span>
+              <h3>Create New Retro</h3>
+            </span>
             <Button
               label='+ Add New Task'
               type='primary large'
               disabled={isDisables}
               onClick={() => setActiveModal(ModalEnum.CREATE_TASK)}
             />
+
             <ToggleTheme />
             <Dropdown
               disable={data?.boards.length === 0}

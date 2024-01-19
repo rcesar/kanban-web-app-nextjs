@@ -8,8 +8,8 @@ interface TaskColumnProps {
 }
 
 const colColors = [
-  "bg-[#49C4E5]",
-  "bg-[#8471F2]",
+  "bg-red-700",
+  "bg-green-600",
   "bg-[#f3e849]",
   "bg-[#67E2AE]",
   "bg-[#ee9b57]",
@@ -21,10 +21,10 @@ const TaskColumn: React.FC<TaskColumnProps> = ({ col, onClickedTask, id }) => {
   };
 
   return (
-    <div className="w-[280px] shrink-0 h-full">
+    <div className="w-[300px] shrink-0 h-full border border-gray3 rounded-md border-dashed p-5">
       <div className="flex mb-6">
         <div
-          className={`w-4 h-4 ${
+          className={`w-4 h-4 bg- ${
             colColors?.[parseInt(id)] ||
             colColors?.[parseInt(id) - colColors.length]
           } rounded-full inline-block mr-3`}
