@@ -1,24 +1,23 @@
-import Board from "@/model/Board";
-import ModalEnum from "@/model/ModalEnum";
-import { updateBoardApi } from "@/services/apiBoards";
-import { selectModal, setActiveModal } from "@/store/uiSlice";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useDispatch, useSelector } from "react-redux";
+import Board from '@/model/Board'
+import ModalEnum from '@/model/ModalEnum'
+import { updateBoardApi } from '@/services/apiBoards'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
+import useUiContext from './useUiContext'
 
 export const useUpdateBoard = () => {
-  const queryClient = useQueryClient();
-  const dispatch = useDispatch();
-  const activeModal = useSelector(selectModal);
+  const queryClient = useQueryClient()
+  const { setActiveModal, openedModal } = useUiContext()
+
   const { mutate: updateBoard, isLoading: isUpdating } = useMutation({
     mutationFn: ({ id, board }: { id: string; board: Board }) =>
       updateBoardApi(id, board),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["boards"] });
+      queryClient.invalidateQueries({ queryKey: ['boards'] })
       //do not close modal if viewing task.
-      if (activeModal !== ModalEnum.VIEW_TASK) {
-        dispatch(setActiveModal(undefined));
+      if (openedModal !== ModalEnum.VIEW_TASK) {
+        setActiveModal(undefined)
       }
-    },
-  });
-  return { isUpdating, updateBoard };
-};
+    }
+  })
+  return { isUpdating, updateBoard }
+}

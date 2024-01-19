@@ -4,6 +4,7 @@ import { Provider } from "react-redux";
 import { store } from "@/store/store";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { UiContextProvider } from "@/contexts/uiContext";
 
 export default function App({ Component, pageProps }: AppProps) {
   const queryClient = new QueryClient({
@@ -15,11 +16,11 @@ export default function App({ Component, pageProps }: AppProps) {
   });
 
   return (
-    <Provider store={store}>
-      <QueryClientProvider client={queryClient}>
-        <ReactQueryDevtools initialIsOpen={false} />
-        <Component {...pageProps} />
-      </QueryClientProvider>
-    </Provider>
+    <UiContextProvider>
+        <QueryClientProvider client={queryClient}>
+          <ReactQueryDevtools initialIsOpen={false} />
+          <Component {...pageProps} />
+        </QueryClientProvider>
+    </UiContextProvider>
   );
 }
